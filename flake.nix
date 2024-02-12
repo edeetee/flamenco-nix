@@ -30,11 +30,13 @@
           ];
         };
 
-        apps.x86_64-linux.default = {
-          type = "app";
-          program = "${pkgs.flamenco}/bin/flamenco";
-          description = "Flamenco 3.4";
-        };
+        packages.x86_64-linux.default = self.packages.flamenco;
+
+        # apps.x86_64-linux.default = {
+        #   type = "app";
+        #   program = "${pkgs.flamenco}/bin/flamenco";
+        #   description = "Flamenco 3.4";
+        # };
       }
     );
 }
