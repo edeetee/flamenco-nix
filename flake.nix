@@ -20,7 +20,7 @@
             mkdir -p $out/bin
             # Extract the archive for a more accurate executable path
             tar -xf $src -C $out 
-            cp $out/flamenco-3.4-linux-amd64/* $out/bin  # Assuming this is the path
+            cp -r $out/flamenco-3.4-linux-amd64/* $out/bin  # Assuming this is the path
           '';
 
           propagatedBuildInputs = with pkgs; [ 
