@@ -5,9 +5,9 @@
   };
 
   outputs = { self, nixpkgs, utils }:
-    {
-      defaultPackage.x86_64-linux = 
-        with import nixpkgs { system = "x86_64-linux"; };
+    let pkgs = import nixpkgs { system = "x86_64-linux"; };
+    in {
+      package.manager.x86_64-linux = 
         stdenv.mkDerivation { 
           name = "flamenco-3.4";
           version = "3.4";
@@ -27,5 +27,7 @@
             blender
           ];
         };
+
+      defaultPackage = self.package.manager.x86_64-linux;
     };
 }
