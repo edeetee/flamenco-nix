@@ -30,7 +30,7 @@
           ];
         };
 
-        apps.x86-64-linux.flamenco = {
+        apps.x86_64-linux.default = {
           type = "app";
           program = "${pkgs.flamenco}/bin/flamenco";
           description = "Flamenco 3.4";
