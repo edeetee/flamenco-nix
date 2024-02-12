@@ -5,12 +5,10 @@
   };
 
   outputs = { self, nixpkgs, utils }:
-    utils.lib.eachDefaultSystem (system: 
-      let 
-        pkgs = import nixpkgs { inherit system; };
-      in
-      {
-        packages.flamenco = pkgs.buildPackage { 
+    {
+      defaultPackage.x86_64-linux = 
+        with import nixpkgs { system = "x86_64-linux"; };
+        stdenv.mkDerivation { 
           name = "flamenco-3.4";
           version = "3.4";
           src = pkgs.fetchurl {
@@ -29,8 +27,5 @@
             blender
           ];
         };
-
-        packages.default = self.packages.${system}.flamenco;
-      }
-    );
+    }
 }
