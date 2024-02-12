@@ -30,7 +30,7 @@
           ];
         };
 
-        packages.default = packages.flamenco;
+        packages.default = self.packages.${system}.flamenco;
       }
     );
 }
