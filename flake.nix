@@ -5,9 +5,12 @@
   };
 
   outputs = { self, nixpkgs, utils }:
-    let pkgs = import nixpkgs { system = "x86_64-linux"; };
-    in {
-      packages.x86_64-linux = {
+    let 
+	system = "x86_64-linux";
+    	pkgs = import nixpkgs { inherit system; };
+    in 
+    {
+      packages.${system} = {
         manager = pkgs.stdenv.mkDerivation { 
           name = "flamenco-manager-3.4";
           version = "3.4";
@@ -28,7 +31,7 @@
           ];
         };
         
-        default = self.packages.x86_64-linux.manager;
+        default = self.packages.${system}.manager;
       };
     };
 }
