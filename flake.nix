@@ -7,9 +7,9 @@
   outputs = { self, nixpkgs, utils }:
     let pkgs = import nixpkgs { system = "x86_64-linux"; };
     in {
-      package.manager.x86_64-linux = 
-        stdenv.mkDerivation { 
-          name = "flamenco-3.4";
+      packages.x86_64-linux = {
+        manager = pkgs.stdenv.mkDerivation { 
+          name = "flamenco-manager-3.4";
           version = "3.4";
           src = pkgs.fetchurl {
             url = "https://flamenco.blender.org/downloads/flamenco-3.4-linux-amd64.tar.gz";
@@ -27,7 +27,9 @@
             blender
           ];
         };
-
-      defaultPackage = self.package.manager.x86_64-linux;
+        
+        default = self.packages.x86_64-linux.manager;
+      };
     };
 }
+
