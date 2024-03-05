@@ -24,6 +24,8 @@
             # Extract the archive for a more accurate executable path
             tar -xf $src -C $out 
             cp -r $out/flamenco-3.4-linux-amd64/* $out/bin  # Assuming this is the path
+	    mkdir /var/tmp/flamenco-manager-storage || true
+	    ln -s /var/tmp/flamenco-manager-storage $out/bin/flamenco-manager-storage
           '';
 
           propagatedBuildInputs = with pkgs; [ 
