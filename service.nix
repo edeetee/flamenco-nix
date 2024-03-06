@@ -18,14 +18,22 @@
 	};
 
 	config = mkIf cfg.enable {
-		systemd.services.flamenco = {
+		systemd.services.flamenco-manager = {
 			wantedBy = ["multi-user.target"];
 			after = ["network.target"];
-			description = "Run Flamenco Manager and Worker";
+			description = "Run Flamenco Manager";
 			serviceConfig = {
 				Type = "simple";
 				ExecStart = "${flamenco}/bin/flamenco-manager";
-				ExecStartPost = "${flamenco}/bin/flamenco-worker";
+			};
+		};
+		systemd.services.flamenco-worker = {
+			wantedBy = ["multi-user.target"];
+			after = ["network.target"];
+			description = "Run Flamenco Worker";
+			serviceConfig = {
+				Type = "simple";
+				ExecStart = "${flamenco}/bin/flamenco-worker";
 			};
 		};
 	};
