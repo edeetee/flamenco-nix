@@ -35,6 +35,8 @@
         
         default = self.packages.${system}.manager;
       };
+
+	  nixosModules.flamenco = import ./service.nix self;
     };
 }
 
