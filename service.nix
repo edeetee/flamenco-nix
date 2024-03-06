@@ -2,7 +2,7 @@
  
  let
    cfg = config.services.flamenco;
-   inherit (flake.packages.${pkgs.stdenv.hostPlatform.system}) flamenco;
+   flamenco = flake.packages.${pkgs.stdenv.hostPlatform.system}.default;
  in
  
  with lib;
