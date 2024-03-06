@@ -21,7 +21,7 @@
 		systemd.services.flamenco = {
 			wantedBy = ["multi-user.target"];
 			after = ["network.target"];
-			descripton = "Run Flamenco Manager and Worker";
+			description = "Run Flamenco Manager and Worker";
 			serviceConfig = {
 				Type = "simple";
 				ExecStart = "${flamenco}/bin/flamenco-manager";
