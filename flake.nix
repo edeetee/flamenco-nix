@@ -13,7 +13,7 @@
       packages.${system} = {
         manager = pkgs.stdenv.mkDerivation { 
           name = "flamenco-manager-3.5";
-          version = "3.4";
+          version = "3.5";
           src = pkgs.fetchurl {
 			url = "https://flamenco.blender.org/downloads/flamenco-3.5-linux-amd64.tar.gz";
 			sha256 = "78f6e647fb3512e73f1985ae947d50b428b9d9830ecb75fc0bf4c7a814646f9e";
