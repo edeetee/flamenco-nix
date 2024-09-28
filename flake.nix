@@ -26,6 +26,7 @@
             cp -r $out/flamenco-3.5-linux-amd64/* $out/bin  # Assuming this is the path
 	    mkdir /var/tmp/flamenco-manager-storage || true
 	    ln -s /var/tmp/flamenco-manager-storage $out/bin/flamenco-manager-storage
+		cp ${././flamenco-manager.yaml} $out/bin/flamenco-manager.yaml
           '';
 
           propagatedBuildInputs = with pkgs; [ 
