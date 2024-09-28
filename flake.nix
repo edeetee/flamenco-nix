@@ -12,18 +12,18 @@
     {
       packages.${system} = {
         manager = pkgs.stdenv.mkDerivation { 
-          name = "flamenco-manager-3.4";
+          name = "flamenco-manager-3.5";
           version = "3.4";
           src = pkgs.fetchurl {
-            url = "https://flamenco.blender.org/downloads/flamenco-3.4-linux-amd64.tar.gz";
-            sha256 = "1185a721cf3b016b2772c28a7b4748fe73dc97d73c88b197f670b2c719e20cc4";
+			url = "https://flamenco.blender.org/downloads/flamenco-3.5-linux-amd64.tar.gz";
+			sha256 = "78f6e647fb3512e73f1985ae947d50b428b9d9830ecb75fc0bf4c7a814646f9e";
           };
 
           installPhase = ''
             mkdir -p $out/bin
             # Extract the archive for a more accurate executable path
             tar -xf $src -C $out 
-            cp -r $out/flamenco-3.4-linux-amd64/* $out/bin  # Assuming this is the path
+            cp -r $out/flamenco-3.5-linux-amd64/* $out/bin  # Assuming this is the path
 	    mkdir /var/tmp/flamenco-manager-storage || true
 	    ln -s /var/tmp/flamenco-manager-storage $out/bin/flamenco-manager-storage
           '';
