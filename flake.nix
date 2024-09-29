@@ -37,37 +37,37 @@
     in 
     {
       packages.${system} = {
-		manager = pkgs.writeShellApplication {
-			name = "flamenco-manager";
-			runtimeInputs = [ pkgs.coreutils ];
-
-			text = ''
-				mkdir -p ${datadirs.manager}
-				cp ${raw}/flamenco-manager.yaml ${datadirs.manager} -n
-
-				cd ${datadirs.manager}
-				${raw}/bin/flamenco-manager
-			'';
-			};
-
-		worker = pkgs.writeShellApplication {
-			name = "flamenco-worker" ;
-			runtimeInputs = [ pkgs.coreutils ];
-
-			text = ''
-				mkdir -p ${datadirs.worker}
-
-				cd ${datadirs.worker}
-				${raw}/bin/flamenco-worker
-			'';
-		};
+		# manager = pkgs.writeShellApplication {
+		# 	name = "flamenco-manager";
+		# 	runtimeInputs = [ pkgs.coreutils ];
+		#
+		# 	text = ''
+		# 		mkdir -p ${datadirs.manager}
+		# 		cp ${raw}/flamenco-manager.yaml ${datadirs.manager} -n
+		#
+		# 		cd ${datadirs.manager}
+		# 		${raw}/bin/flamenco-manager
+		# 	'';
+		# 	};
+		#
+		# worker = pkgs.writeShellApplication {
+		# 	name = "flamenco-worker" ;
+		# 	runtimeInputs = [ pkgs.coreutils ];
+		#
+		# 	text = ''
+		# 		mkdir -p ${datadirs.worker}
+		#
+		# 		cd ${datadirs.worker}
+		# 		${raw}/bin/flamenco-worker
+		# 	'';
+		# };
         
-        default = self.packages.${system}.manager;
+        default = pkgs.callPackage ./hubble-flamenco.nix {};
       };
 
-		datadirs = datadirs;
+		# datadirs = datadirs;
 
-	  nixosModules.flamenco = import ./service.nix self;
+	  nixosModules.flamenco = import ./hubble-service.nix;
     };
 }
 
