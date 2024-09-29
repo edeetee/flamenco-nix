@@ -25,7 +25,7 @@
 			description = "Run Flamenco Manager";
 			serviceConfig = {
 				Type = "simple";
-				ExecStart = "${flamenco.manager}";
+				ExecStart = "${flamenco.manager}/bin/flamenco-manager";
 				WorkingDirectory = "%h/.local/state/flamenco/manager";
 			};
 		};
@@ -35,7 +35,7 @@
 			description = "Run Flamenco Worker";
 			serviceConfig = {
 				Type = "simple";
-				ExecStart = "${flamenco.worker}";
+				ExecStart = "${flamenco.worker}/bin/flamenco-worker";
 				WorkingDirectory = "%h/.local/state/flamenco/worker";
 			};
 		};
