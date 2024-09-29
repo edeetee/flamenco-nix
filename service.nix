@@ -26,7 +26,7 @@
 			serviceConfig = {
 				Type = "simple";
 				ExecStart = "${flamenco.manager}";
-				WorkingDirectory = "${datadirs.manager}";
+				WorkingDirectory = "%h/.local/state/flamenco/manager";
 			};
 		};
 		systemd.services.flamenco-worker = {
@@ -36,7 +36,7 @@
 			serviceConfig = {
 				Type = "simple";
 				ExecStart = "${flamenco.worker}";
-				WorkingDirectory = "${datadirs.worker}";
+				WorkingDirectory = "%h/.local/state/flamenco/worker";
 			};
 		};
 	};
