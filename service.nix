@@ -2,7 +2,8 @@
  
  let
    cfg = config.services.flamenco;
-   flamenco = flake.packages.${pkgs.stdenv.hostPlatform.system}.default;
+   flamenco = flake.packages.${pkgs.stdenv.hostPlatform.system};
+	datadirs = flake.datadirs;
  in
  
  with lib;
@@ -24,8 +25,8 @@
 			description = "Run Flamenco Manager";
 			serviceConfig = {
 				Type = "simple";
-				ExecStart = "${flamenco}/bin/flamenco-manager";
-				WorkingDirectory = "${flamenco}";
+				ExecStart = "${flamenco.manager}";
+				WorkingDirectory = "${datadirs.manager}";
 			};
 		};
 		systemd.services.flamenco-worker = {
@@ -34,8 +35,8 @@
 			description = "Run Flamenco Worker";
 			serviceConfig = {
 				Type = "simple";
-				ExecStart = "${flamenco}/bin/flamenco-worker";
-				WorkingDirectory = "${flamenco}";
+				ExecStart = "${flamenco.worker}";
+				WorkingDirectory = "${datadirs.worker}";
 			};
 		};
 	};
