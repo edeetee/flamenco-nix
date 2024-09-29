@@ -27,7 +27,7 @@
             # Extract the archive for a more accurate executable path
             tar -xf $src -C $out 
             mv $out/flamenco-3.5-linux-amd64/* $out/bin  # Assuming this is the path
-			cp ${./flamenco-manager.yaml} $out/flamenco-manager.yaml
+			cp -f ${./flamenco-manager.yaml} $out/flamenco-manager.yaml
           '';
 
           propagatedBuildInputs = with pkgs; [ 
