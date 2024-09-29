@@ -36,7 +36,7 @@
   #       };
     in 
     {
-      packages.${system} = {
+      packages.${system} = rec {
 		# manager = pkgs.writeShellApplication {
 		# 	name = "flamenco-manager";
 		# 	runtimeInputs = [ pkgs.coreutils ];
@@ -61,8 +61,8 @@
 		# 		${raw}/bin/flamenco-worker
 		# 	'';
 		# };
-        
-        default = pkgs.callPackage ./hubble-flamenco.nix {};
+		flamenco = pkgs.callPackage ./hubble-flamenco.nix {};
+        default = flamenco;
       };
 
 	  nixosModules.flamenco = import ./hubble-service.nix self;
