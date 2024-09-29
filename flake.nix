@@ -57,7 +57,7 @@
 			text = ''
 				mkdir -p ${datadirs.worker}
 
-				cd ${datadirs.worker} -n
+				cd ${datadirs.worker}
 				${raw}/bin/flamenco-worker
 			'';
 		};
