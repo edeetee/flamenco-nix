@@ -8,32 +8,32 @@
     let 
 		system = "x86_64-linux";
     	pkgs = import nixpkgs { inherit system; };
-		datadirs = rec {
-			root = "~/.local/state/flamenco";
-			manager = "${root}/manager";
-			worker = "${root}/worker";
-		};
-
-        raw = pkgs.stdenv.mkDerivation { 
-          name = "flamenco-manager-3.5";
-          version = "3.5";
-          src = pkgs.fetchurl {
-			url = "https://flamenco.blender.org/downloads/flamenco-3.5-linux-amd64.tar.gz";
-			sha256 = "78f6e647fb3512e73f1985ae947d50b428b9d9830ecb75fc0bf4c7a814646f9e";
-          };
-
-          installPhase = ''
-            mkdir -p $out/bin
-            # Extract the archive for a more accurate executable path
-            tar -xf $src -C $out 
-            mv $out/flamenco-3.5-linux-amd64/* $out/bin  # Assuming this is the path
-			cp -f ${./flamenco-manager.yaml} $out/flamenco-manager.yaml
-          '';
-
-          propagatedBuildInputs = with pkgs; [ 
-            blender
-          ];
-        };
+		# datadirs = rec {
+		# 	root = "~/.local/state/flamenco";
+		# 	manager = "${root}/manager";
+		# 	worker = "${root}/worker";
+		# };
+		#
+  #       raw = pkgs.stdenv.mkDerivation { 
+  #         name = "flamenco-manager-3.5";
+  #         version = "3.5";
+  #         src = pkgs.fetchurl {
+		# 	url = "https://flamenco.blender.org/downloads/flamenco-3.5-linux-amd64.tar.gz";
+		# 	sha256 = "78f6e647fb3512e73f1985ae947d50b428b9d9830ecb75fc0bf4c7a814646f9e";
+  #         };
+		#
+  #         installPhase = ''
+  #           mkdir -p $out/bin
+  #           # Extract the archive for a more accurate executable path
+  #           tar -xf $src -C $out 
+  #           mv $out/flamenco-3.5-linux-amd64/* $out/bin  # Assuming this is the path
+		# 	cp -f ${./flamenco-manager.yaml} $out/flamenco-manager.yaml
+  #         '';
+		#
+  #         propagatedBuildInputs = with pkgs; [ 
+  #           blender
+  #         ];
+  #       };
     in 
     {
       packages.${system} = {
@@ -64,6 +64,15 @@
         
         default = pkgs.callPackage ./hubble-flamenco.nix {};
       };
+
+
+				
+	nixpkgs.overlays = [
+				(prev: final: {
+					flamenco = final.callPackage ./hubble-flamenco.nix {};
+				})
+			];
+
 
 		# datadirs = datadirs;
 
