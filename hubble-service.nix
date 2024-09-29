@@ -2,7 +2,6 @@ flake: {
   config,
   lib,
   pkgs,
-  self,
   ...
 }: let
   cfg = config.services.flamenco;
@@ -69,7 +68,7 @@ flake: {
     worker = yaml.generate "flamenco-worker.yaml" (defaultConfig.worker // cfg.workerConfig);
   };
 
-	flamenco = self.packages.${pkgs.system}.flamenco;
+	flamenco = flake.packages.${pkgs.system}.flamenco;
 
   mkService = role: {
     wantedBy = ["multi-user.target"];
