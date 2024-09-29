@@ -1,7 +1,8 @@
-{
+flake: {
   config,
   lib,
   pkgs,
+  self,
   ...
 }: let
   cfg = config.services.flamenco;
@@ -68,6 +69,8 @@
     worker = yaml.generate "flamenco-worker.yaml" (defaultConfig.worker // cfg.workerConfig);
   };
 
+	flamenco = self.packages.${pkgs.system}.flamenco;
+
   mkService = role: {
     wantedBy = ["multi-user.target"];
     after = ["network-online.target"];
@@ -85,7 +88,7 @@
       else {};
 
     serviceConfig = {
-      ExecStart = "${cfg.package}/bin/flamenco-${role}";
+      ExecStart = "${flamenco}/bin/flamenco-${role}";
 
       User = cfg.user;
       Group = cfg.group;
@@ -110,7 +113,6 @@ in {
 
   options.services.flamenco = with lib.types; {
     enable = lib.mkEnableOption "Flamenco, a render farm management software for Blender";
-    package = lib.mkPackageOption pkgs "flamenco" {};
     openFirewall = lib.mkEnableOption "service ports in the firewall";
 
     role = lib.mkOption {
@@ -226,7 +228,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [cfg.package];
+    environment.systemPackages = [flamenco];
     networking.firewall = lib.optionalAttrs (cfg.openFirewall && roleIs "manager") {
       allowedTCPPorts = [cfg.listen.port];
       allowedUDPPorts = lib.optionals cfg.managerConfig.autodiscoverable [1900];

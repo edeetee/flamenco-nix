@@ -65,18 +65,7 @@
         default = pkgs.callPackage ./hubble-flamenco.nix {};
       };
 
-
-				
-	nixpkgs.overlays = [
-				(prev: final: {
-					flamenco = final.callPackage ./hubble-flamenco.nix {};
-				})
-			];
-
-
-		# datadirs = datadirs;
-
-	  nixosModules.flamenco = import ./hubble-service.nix;
+	  nixosModules.flamenco = import ./hubble-service.nix self;
     };
 }
 
