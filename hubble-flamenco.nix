@@ -5,7 +5,7 @@
   fetchYarnDeps,
   fixup-yarn-lock,
   makeWrapper,
-  blender,
+  blender-hip,
   ffmpeg,
   go_1_23,
   oapi-codegen,
@@ -48,7 +48,7 @@
     ];
 
     buildInputs = [
-      blender
+      blender-hip
       ffmpeg
     ];
 
@@ -80,7 +80,7 @@
       do
         wrapProgram $f \
           --set PATH ${lib.makeBinPath [
-        blender
+        blender-hip
         ffmpeg
       ]}
       done
