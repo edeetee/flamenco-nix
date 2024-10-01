@@ -1,31 +1,28 @@
 {
   lib,
-  buildGoModule,
+  buildGo123Module,
   fetchFromGitea,
   fetchYarnDeps,
   fixup-yarn-lock,
   makeWrapper,
   blender,
   ffmpeg,
-  go,
+  go_1_23,
   oapi-codegen,
   mockgen,
   nodejs,
   yarn,
   prefetch-yarn-deps,
-}: let
-  version = "3.5";
-in
-  buildGoModule rec {
+}: buildGo123Module rec {
     pname = "flamenco";
-    inherit version;
+	version = "3.6-alpha4";
 
     src = fetchFromGitea {
       domain = "projects.blender.org";
       owner = "studio";
       repo = "flamenco";
-      rev = "v${version}";
-      hash = "sha256-iAMQv4GzxS5PPQPrLCjBj7qd2HpAg91/BtMRoGTuJ5U=";
+      rev = "5e52e1efa4";
+      hash = "sha256-2FsRcmQJu8H8ZvH8i7qeWp9rUMVZqvhsMW28bwnHdg0=";
     };
 
     patches = [
@@ -37,11 +34,11 @@ in
       hash = "sha256-QcfyiL2/ALkxZpJyiwyD7xNlkOCPu4THCyywwZ40H8s=";
     };
 
-    vendorHash = "sha256-DJooc+rGQ61lxjqP5+5eyQe7x69R3ADOwHDMu6NbICQ=";
+    vendorHash = "sha256-Kflpa+nQP106Pvu2ZcYDbxjL3wMGi01j/q1PP7b7BoE=";
 
     nativeBuildInputs = [
       makeWrapper
-      go
+      go_1_23
       oapi-codegen
       mockgen
       nodejs
