@@ -245,7 +245,7 @@ in {
         "${cfg.user}" = {
           uid = 303;
           inherit (cfg) group;
-          isSystemUser = true;
+          # isSystemUser = true;
         };
       };
     };
