@@ -240,15 +240,15 @@ in {
       };
     };
 
-    users = {
-      users = lib.optionalAttrs (cfg.user == "render" && cfg.group == "render") {
-        "${cfg.user}" = {
-          uid = 303;
-          inherit (cfg) group;
-			# isNormalUser = true;
-          # isSystemUser = true;
-        };
-      };
-    };
+   #  users = {
+   #    users = lib.optionalAttrs (cfg.user == "render" && cfg.group == "render") {
+   #      "${cfg.user}" = {
+   #        uid = 303;
+   #        inherit (cfg) group;
+			# # isNormalUser = true;
+   #        # isSystemUser = true;
+   #      };
+   #    };
+   #  };
   };
 }
