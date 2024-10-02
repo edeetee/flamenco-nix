@@ -41,14 +41,12 @@ flake: {
             }
           ];
         };
-
-        "blenderArgs" = {
+ 		"blenderArgs" = {
           values = [
-							{
-					platform = "all";
-					values = ''--python-expr "import bpy; c = bpy.context.preferences.addons\"cycles\"]; cp = c.preferences; cp.compute_device_type = \"HIP\"; print(cp.compute_device_type); cp.get_devices(); [print(x[\"name\"], x[\"use\"]) for x in cp.devices]; print(bpy.data.scenes[0].render.engine)"'';
-				}
-
+            {
+              platform = "all";
+              value = "-b -y";
+            }
           ];
         };
       };
