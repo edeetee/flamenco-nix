@@ -42,15 +42,15 @@ flake: {
           ];
         };
 
-        # "blenderArgs" = {
-        #   values = [
-        #     {
-        #       platform = "all";
-        #       value = "-b -y";
-        #     }
-        #   ];
-        # };
-      };
+      #   "blenderArgs" = {
+      #     values = [
+      #       {
+      #         platform = "all";
+      #         value = "-b -y";
+      #       }
+      #     ];
+      #   };
+      # };
     };
 
     worker = {
