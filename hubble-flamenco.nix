@@ -27,7 +27,7 @@
 
     webappOfflineCache = fetchYarnDeps {
       yarnLock = "${src}/web/app/yarn.lock";
-      hash = "sha256-QcfyiL2/ALkxZpJyiwyD7xNlkOCPu4THCyywwZ40H8s=";
+      hash = "sha256-9g7cClQD6/lorjIfljgj3lVcUbj+V+7RhrR9BYF25sc=";
     };
 
     vendorHash = "sha256-Kflpa+nQP106Pvu2ZcYDbxjL3wMGi01j/q1PP7b7BoE=";
