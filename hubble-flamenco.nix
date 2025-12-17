@@ -30,7 +30,7 @@
       hash = "sha256-9g7cClQD6/lorjIfljgj3lVcUbj+V+7RhrR9BYF25sc=";
     };
 
-    vendorHash = "sha256-Kflpa+nQP106Pvu2ZcYDbxjL3wMGi01j/q1PP7b7BoE=";
+    vendorHash = "sha256-99lQpIriabAdmOUOwC/sOgBHnE6ESpeXwrFUIOhYMNc=";
 
     nativeBuildInputs = [
       makeWrapper
