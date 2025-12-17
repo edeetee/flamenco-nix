@@ -1,23 +1,25 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; # Or a stable channel
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11"; # Or a stable channel
     utils.url = "github:numtide/flake-utils";
   };
 
   outputs = { self, nixpkgs, utils }:
-    let 
-		system = "x86_64-linux";
-    	pkgs = import nixpkgs { 
-				inherit system;
-			};
-    in 
-    {
-      packages.${system} = rec {
-		flamenco = pkgs.callPackage ./hubble-flamenco.nix {};
-        default = flamenco;
-      };
+    utils.lib.eachDefaultSystem
+    (system:
+      let 
+        pkgs = import nixpkgs { 
+          inherit system;
+        };
+      in 
+      {
+        packages = rec {
+          flamenco = pkgs.callPackage ./hubble-flamenco.nix {};
+          default = flamenco;
+        };
 
-	  nixosModules.flamenco = import ./hubble-service.nix self;
-    };
+        nixosModules.flamenco = import ./hubble-service.nix self;
+      }
+    );
 }
 

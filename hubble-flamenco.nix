@@ -1,33 +1,29 @@
 {
   lib,
-  buildGo123Module,
+  buildGoModule,
   fetchFromGitea,
   fetchYarnDeps,
   fixup-yarn-lock,
   makeWrapper,
   blender-hip,
   ffmpeg,
-  go_1_23,
+  go_1_25,
   oapi-codegen,
   mockgen,
   nodejs,
   yarn,
   prefetch-yarn-deps,
-}: buildGo123Module rec {
+}: buildGoModule rec {
     pname = "flamenco";
-	version = "3.6-alpha4";
+	  version = "3.8";
 
     src = fetchFromGitea {
       domain = "projects.blender.org";
       owner = "studio";
       repo = "flamenco";
-      rev = "5e52e1efa4";
-      hash = "sha256-2FsRcmQJu8H8ZvH8i7qeWp9rUMVZqvhsMW28bwnHdg0=";
+      rev = "v3.8";
+      hash = "sha256-F1UnvPpLsHrSIpr3GbYQ+kXG5nLV4iDuL+Vqi18/ohU=";
     };
-
-    patches = [
-      ./absolute-path-bypass.patch
-    ];
 
     webappOfflineCache = fetchYarnDeps {
       yarnLock = "${src}/web/app/yarn.lock";
@@ -38,7 +34,7 @@
 
     nativeBuildInputs = [
       makeWrapper
-      go_1_23
+      go_1_25
       oapi-codegen
       mockgen
       nodejs
@@ -90,7 +86,6 @@
       description = "Production render farm manager for Blender";
       homepage = "https://flamenco.blender.org/";
       license = lib.licenses.gpl3Only;
-      # TODO Wanted: maintainer for darwin
       platforms = ["x86_64-linux"];
       maintainers = with lib.maintainers; [hubble];
     };
