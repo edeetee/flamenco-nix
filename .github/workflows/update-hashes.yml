@@ -2,6 +2,11 @@ name: Update flamenco package hashes
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - 'copilot/**'
+    paths:
+      - 'hubble-flamenco.nix'
 
 jobs:
   update-hashes:
