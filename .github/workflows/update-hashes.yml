@@ -6,7 +6,7 @@ on:
       ref:
         description: 'Branch or ref to update hashes on'
         required: false
-        default: 'main'
+        default: 'copilot/fix-flamenco-config-directory-issue'
 
 jobs:
   update-hashes:

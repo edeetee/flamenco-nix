@@ -21,7 +21,7 @@
       domain = "projects.blender.org";
       owner = "studio";
       repo = "flamenco";
-      rev = "v3.9";
+      rev = "45707c386edf86976d102d2bb51c485dfa393278";
       hash = lib.fakeHash;
     };
 
