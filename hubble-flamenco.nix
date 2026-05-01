@@ -7,7 +7,7 @@
   makeWrapper,
   blender-hip,
   ffmpeg,
-  go_1_25,
+  go_1_26,
   oapi-codegen,
   mockgen,
   nodejs,
@@ -15,26 +15,26 @@
   prefetch-yarn-deps,
 }: buildGoModule rec {
     pname = "flamenco";
-	  version = "3.8";
+	  version = "3.9";
 
     src = fetchFromGitea {
       domain = "projects.blender.org";
       owner = "studio";
       repo = "flamenco";
-      rev = "v3.8";
-      hash = "sha256-F1UnvPpLsHrSIpr3GbYQ+kXG5nLV4iDuL+Vqi18/ohU=";
+      rev = "v3.9";
+      hash = lib.fakeHash;
     };
 
     webappOfflineCache = fetchYarnDeps {
       yarnLock = "${src}/web/app/yarn.lock";
-      hash = "sha256-9g7cClQD6/lorjIfljgj3lVcUbj+V+7RhrR9BYF25sc=";
+      hash = lib.fakeHash;
     };
 
-    vendorHash = "sha256-99lQpIriabAdmOUOwC/sOgBHnE6ESpeXwrFUIOhYMNc=";
+    vendorHash = lib.fakeHash;
 
     nativeBuildInputs = [
       makeWrapper
-      go_1_25
+      go_1_26
       oapi-codegen
       mockgen
       nodejs

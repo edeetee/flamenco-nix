@@ -17,7 +17,6 @@ flake: {
         garbageCollect = {
           period = "24h0m0s";
           maxAge = "7440m0s";
-          extraCheckoutPaths = [];
         };
       };
       task_timeout = "10m0s";
