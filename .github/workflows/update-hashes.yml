@@ -6,7 +6,7 @@ on:
       ref:
         description: 'Branch or ref to update hashes on'
         required: false
-        default: 'copilot/fix-flamenco-config-directory-issue'
+        default: 'main'
 
 jobs:
   update-hashes:
@@ -60,12 +60,12 @@ jobs:
               return new_content, count > 0
 
           with open(NIX_FILE) as f:
-              content = f.read()
+              content = f.read()  # content is kept in-sync with disk after each update step
 
           # Step 1: fix src hash (first 'hash = lib.fakeHash')
           print("=== Step 1: fixing src hash ===")
           output = run_build()
-          print(output[-3000:])
+          print(output[-3000:])  # show last 3000 chars to capture hash mismatch errors
           got = extract_got_hash(output)
           if got:
               print(f"Replacing src hash with: {got}")
@@ -81,7 +81,7 @@ jobs:
           # Step 2: fix webappOfflineCache hash (second 'hash = lib.fakeHash')
           print("=== Step 2: fixing webappOfflineCache hash ===")
           output = run_build()
-          print(output[-3000:])
+          print(output[-3000:])  # show last 3000 chars to capture hash mismatch errors
           got = extract_got_hash(output)
           if got:
               print(f"Replacing yarn hash with: {got}")
@@ -97,7 +97,7 @@ jobs:
           # Step 3: fix vendorHash
           print("=== Step 3: fixing vendorHash ===")
           output = run_build()
-          print(output[-3000:])
+          print(output[-3000:])  # show last 3000 chars to capture hash mismatch errors
           got = extract_got_hash(output)
           if got:
               print(f"Replacing vendorHash with: {got}")
@@ -113,7 +113,7 @@ jobs:
           # Final build check
           print("=== Final build check ===")
           output = run_build()
-          print(output[-3000:])
+          print(output[-3000:])  # show last 3000 chars to capture hash mismatch errors
           EOF
 
       - name: Show updated file
