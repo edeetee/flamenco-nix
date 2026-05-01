@@ -2,9 +2,11 @@ name: Update flamenco package hashes
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - 'copilot/**'
+    inputs:
+      ref:
+        description: 'Branch or ref to update hashes on'
+        required: false
+        default: 'copilot/fix-flamenco-config-directory-issue'
 
 jobs:
   update-hashes:
@@ -15,6 +17,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
 
       - uses: cachix/install-nix-action@v31
         with:
@@ -124,6 +128,6 @@ jobs:
             echo "No hash changes to commit"
           else
             git commit -m "chore: update flamenco 3.9 package hashes"
-            git push
+            git push origin HEAD:${{ inputs.ref || github.ref }}
           fi
 
